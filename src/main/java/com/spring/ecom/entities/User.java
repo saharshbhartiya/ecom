@@ -11,7 +11,6 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
 @AllArgsConstructor
 @Builder
 @Entity
@@ -30,7 +29,7 @@ public class User {
     @Column(nullable = false, name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE ,} , orphanRemoval = true)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
@@ -43,7 +42,7 @@ public class User {
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user" , cascade = CascadeType.REMOVE , orphanRemoval = true)
     private Profile profile;
 
     @ManyToMany
@@ -52,6 +51,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Set<Product> favouriteProducts = new HashSet<>();
+
     public void addAddress(Address address){
         addresses.add(address);
         address.setUser(this);
@@ -72,5 +72,17 @@ public class User {
         var tag = new Tag();
         tags.remove(tag);
         tag.getUsers().add(null);
+    }
+
+    public void addFavouriteProduct(Product product){
+        favouriteProducts.add(product);
+    }
+
+    @Override
+    public String toString(){
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + " , "+
+                "name = " + name + " , "+
+                "email = " + email + ")";
     }
 }

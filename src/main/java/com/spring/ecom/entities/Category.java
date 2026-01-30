@@ -1,12 +1,14 @@
 package com.spring.ecom.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -15,9 +17,25 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Byte id;
+
     @Column(nullable = false , name = "name")
     private String name;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
+
+    public Category(String name){
+        this.name  = name;
+    }
+
+    public Category(byte id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString(){
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + " , " +
+                "name = " +name;
+    }
 }

@@ -1,12 +1,15 @@
 package com.spring.ecom.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Builder
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Getter
 @Entity
 public class Product {
@@ -21,7 +24,7 @@ public class Product {
     @Column(nullable = false, name = "price")
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private Category category;
 }
