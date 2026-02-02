@@ -9,8 +9,5 @@ import org.springframework.context.ApplicationContext;
 public class Application {
     public static void main(String[] args) {
        ApplicationContext context = SpringApplication.run(Application.class, args);
-       var service = context.getBean(UserService.class);
-       service.fetchPaginatedProducts(0 , 10);
     }
-
 }
