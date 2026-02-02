@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
     @RequestMapping("/hello")
     public Message sayHello(){
-        return new Message("This is hello from saharsh");
+        return new Message("Hello");
+
     }
 }

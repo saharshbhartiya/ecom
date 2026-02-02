@@ -28,9 +28,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO > getByUserId(@PathVariable Long id){
-        var user =  userRepository.findById(id).orElse(null);
-        if(user == null){
+    public ResponseEntity<UserDTO > getByUserId(@PathVariable Long id) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(UserMapper.mapToDTO(user));

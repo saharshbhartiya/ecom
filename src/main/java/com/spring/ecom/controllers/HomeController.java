@@ -11,5 +11,4 @@ public class HomeController {
         model.addAttribute("name" , "Saharsh");
         return "index";
     }
-
 }
