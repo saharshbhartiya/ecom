@@ -1,11 +1,9 @@
 package com.spring.ecom.repositories;
 
-import com.spring.ecom.dtos.ProductSummaryDTO;
 import com.spring.ecom.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package com.spring.ecom.mapper;
 
-import com.spring.ecom.dtos.CreateProductRequest;
 import com.spring.ecom.dtos.ProductDTO;
 import com.spring.ecom.entities.Product;
 import org.mapstruct.Mapper;
