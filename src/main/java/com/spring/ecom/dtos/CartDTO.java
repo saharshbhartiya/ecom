@@ -12,4 +12,5 @@ public class CartDTO {
     private UUID id;
     private List<CartItemDTO> items = new ArrayList<>();
     private BigDecimal totalPrice = BigDecimal.ZERO;
+
 }

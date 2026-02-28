@@ -25,4 +25,5 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart" , cascade = CascadeType.MERGE)
     private Set<CartItem> cartItems = new LinkedHashSet<>();
+
 }
