@@ -6,12 +6,15 @@ import com.spring.ecom.dtos.CartItemProductDTO;
 import com.spring.ecom.entities.Cart;
 import com.spring.ecom.entities.CartItem;
 import com.spring.ecom.entities.Product;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-02-28T16:18:37+0530",
+    date = "2026-03-01T10:54:38+0530",
     comments = "version: 1.6.3, compiler: javac, environment: Java 24.0.2 (Oracle Corporation)"
 )
 @Component
@@ -25,7 +28,10 @@ public class CartMapperImpl implements CartMapper {
 
         CartDTO cartDTO = new CartDTO();
 
+        cartDTO.setItems( cartItemSetToCartItemDTOList( cart.getCartItems() ) );
         cartDTO.setId( cart.getId() );
+
+        cartDTO.setTotalPrice( cart.getTotalPrice() );
 
         return cartDTO;
     }
@@ -61,5 +67,18 @@ public class CartMapperImpl implements CartMapper {
         cartItemProductDTO.setPrice( product.getPrice() );
 
         return cartItemProductDTO;
+    }
+
+    protected List<CartItemDTO> cartItemSetToCartItemDTOList(Set<CartItem> set) {
+        if ( set == null ) {
+            return null;
+        }
+
+        List<CartItemDTO> list = new ArrayList<CartItemDTO>( set.size() );
+        for ( CartItem cartItem : set ) {
+            list.add( toDto( cartItem ) );
+        }
+
+        return list;
     }
 }

@@ -12,6 +12,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface CartMapper {
 
+    @Mapping(target = "items" , source = "cartItems")
+    @Mapping(target = "totalPrice" , expression = "java(cart.getTotalPrice())")
     CartDTO toDto(Cart cart);
 
     @Mapping(target = "totalPrice" , expression = "java(cartItem.getTotalPrice())")
