@@ -1,12 +1,16 @@
 spring:
   application:
-    name:
-        ecom
+    name: ecom
   datasource:
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: jdbc:mysql://localhost:3306/store
+    username: sahar
+    password: Itachi9$
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+  springdoc:
+    swagger-ui:
+      enabled: true
+    api-docs:
+      enabled: true
