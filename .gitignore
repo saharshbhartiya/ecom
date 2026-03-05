@@ -2,5 +2,5 @@ HELP.md
 .mvn/wrapper/maven-wrapper.jar
 ### IntelliJ IDEA ###
 .idea
-
+.env
 /src/main/resources
