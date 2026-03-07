@@ -1,39 +1,58 @@
 package com.spring.ecom.services;
 
+import com.spring.ecom.config.JwtConfig;
+import com.spring.ecom.entities.Role;
+import com.spring.ecom.entities.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
+@AllArgsConstructor
 public class JwtService {
-    @Value("${spring.jwt.secret}")
-    private String secret;
+    private final JwtConfig jwtConfig;
 
-    public String generateToken(String email){
-        final long tokenExpiration = 86400;
-        return Jwts.builder()
-                .subject(email)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * tokenExpiration))
-                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
-                .compact();
+    public JwtToken generateAccessToken(User user){
+        return generateToken(user, jwtConfig.getAccessTokenExpiration());
     }
 
-    public boolean validateToken(String token){
+    public JwtToken generateRefreshToken(User user){
+        return generateToken(user, jwtConfig.getRefreshTokenExpiration());
+    }
+
+    public JwtToken parseToken(String token){
         try{
-            var claims = Jwts.parser()
-                    .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
-                    .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
-            return claims.getExpiration().after(new Date());
+            var claims = getClaims(token);
+            return new JwtToken(claims , jwtConfig.getSecretKey());
+        } catch (JwtException e){
+            return null;
         }
-        catch (JwtException ex){
-            return false;
-        }
+    }
+
+    private JwtToken generateToken(User user, long tokenExpiration) {
+        var claims = Jwts.claims()
+                .subject(user.getId().toString())
+                .add("email" , user.getEmail())
+                .add("name" , user.getName())
+                .add("role" , user.getRole())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000 * tokenExpiration))
+                .build();
+
+        return new JwtToken(claims , jwtConfig.getSecretKey());
+    }
+
+    private Claims getClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(jwtConfig.getSecretKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 }

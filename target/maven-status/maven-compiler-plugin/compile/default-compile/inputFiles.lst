@@ -1,5 +1,7 @@
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\Application.java
+D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\config\JwtConfig.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\config\SecurityConfig.java
+D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\controllers\AdminController.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\controllers\AuthController.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\controllers\CartController.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\controllers\GlobalExceptionHandler.java
@@ -31,10 +33,12 @@ D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Category.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Message.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Product.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Profile.java
+D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Role.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\Tag.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\entities\User.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\exceptions\CartNotFoundException.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\exceptions\ProductNotFoundException.java
+D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\filters\JwtAuthenticationFilter.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\filters\LoggingFilter.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\mapper\CartMapper.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\mapper\ProductMapper.java
@@ -51,6 +55,7 @@ D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\repositories\specifications\P
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\repositories\UserRepository.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\services\CartService.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\services\JwtService.java
+D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\services\JwtToken.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\services\UserService.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\validations\Lowercase.java
 D:\CODEWITHMOSH\demo\src\main\java\com\spring\ecom\validations\LowercaseValidator.java

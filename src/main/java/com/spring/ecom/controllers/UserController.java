@@ -1,6 +1,7 @@
 package com.spring.ecom.controllers;
 
 import com.spring.ecom.dtos.*;
+import com.spring.ecom.entities.Role;
 import com.spring.ecom.mapper.UserMapper;
 import com.spring.ecom.repositories.UserRepository;
 import jakarta.validation.Valid;
@@ -56,6 +57,7 @@ public class UserController {
         }
         var user = userMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
         var userDto = userMapper.toDto(user);
         var uri = uriComponentsBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri();

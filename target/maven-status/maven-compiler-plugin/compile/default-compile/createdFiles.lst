@@ -3,12 +3,14 @@ com\spring\ecom\entities\CartItem.class
 com\spring\ecom\repositories\ProductRepository.class
 com\spring\ecom\services\UserService.class
 com\spring\ecom\entities\Address.class
+com\spring\ecom\filters\JwtAuthenticationFilter.class
 com\spring\ecom\entities\User$UserBuilder.class
 com\spring\ecom\repositories\ProductCriteriaRepositoryImpl.class
 com\spring\ecom\controllers\CartController.class
 com\spring\ecom\mapper\UserMapperImpl.class
 com\spring\ecom\dtos\CartItemDTO.class
 com\spring\ecom\controllers\HomeController.class
+com\spring\ecom\entities\Role.class
 com\spring\ecom\dtos\UserDTO.class
 com\spring\ecom\dtos\UserSummary.class
 com\spring\ecom\dtos\LoginRequest.class
@@ -26,6 +28,7 @@ com\spring\ecom\dtos\UserDTO$UserDTOBuilder.class
 com\spring\ecom\entities\Profile$ProfileBuilder.class
 com\spring\ecom\entities\Category.class
 com\spring\ecom\mapper\CartMapperImpl.class
+com\spring\ecom\services\JwtToken.class
 com\spring\ecom\mapper\ProductMapper.class
 com\spring\ecom\repositories\specifications\ProductSpecification.class
 com\spring\ecom\entities\User.class
@@ -50,6 +53,8 @@ com\spring\ecom\dtos\CartDTO.class
 com\spring\ecom\dtos\AddressDTO.class
 com\spring\ecom\mapper\CartMapper.class
 com\spring\ecom\repositories\ProductCriteriaRepository.class
+com\spring\ecom\config\JwtConfig.class
+com\spring\ecom\controllers\AdminController.class
 com\spring\ecom\controllers\ProductController.class
 com\spring\ecom\config\SecurityConfig.class
 com\spring\ecom\dtos\ProductSummary.class
