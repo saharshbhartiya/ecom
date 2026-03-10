@@ -1,0 +1,19 @@
+package com.spring.ecom.services;
+
+import com.spring.ecom.entities.User;
+import com.spring.ecom.repositories.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class AuthService {
+    private final UserRepository userRepository;
+
+    public User getCurrentUser(){
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        var userId = (Long) authentication.getPrincipal();
+        return userRepository.findById(userId).orElse(null);
+    }
+}

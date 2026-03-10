@@ -1,14 +1,8 @@
 package com.spring.ecom.controllers;
 
-import com.spring.ecom.dtos.AddItemToCartRequest;
-import com.spring.ecom.dtos.CartDTO;
-import com.spring.ecom.dtos.CartItemDTO;
-import com.spring.ecom.dtos.UpdateCartItemDTO;
+import com.spring.ecom.dtos.*;
 import com.spring.ecom.exceptions.CartNotFoundException;
 import com.spring.ecom.exceptions.ProductNotFoundException;
-import com.spring.ecom.mapper.CartMapper;
-import com.spring.ecom.repositories.CartRepository;
-import com.spring.ecom.repositories.ProductRepository;
 import com.spring.ecom.services.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Map;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -76,12 +69,16 @@ public class CartController {
     }
 
     @ExceptionHandler(CartNotFoundException.class)
-    public ResponseEntity<Map<String , String>> handleCartNotFound(){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error" , "Cart not found."));
+    public ResponseEntity<?> handleCartNotFound(){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ErrorDTO("Cart not found.")
+        );
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Map<String , String>> handleProductNotFount(){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error" , "Product not found in the cart."));
+    public ResponseEntity<?> handleProductNotFount(){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ErrorDTO("Product not found in the cart.")
+        );
     }
 }
