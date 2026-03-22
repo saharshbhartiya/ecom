@@ -1,7 +1,5 @@
 # 🛍️ E-Commerce Platform
-
 <p align="center">
-![Banner](https://readmeforge.natrajx.in/api/banner?text=Java&subtext=&metal=cyber-red&type=wave&height=200&width=900&animation=none&align=center&section=header&theme=dark&fontFamily=Orbitron)
   <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
   <img src="https://img.shields.io/badge/Spring%20Data%20JPA-339933?style=for-the-badge&logo=spring&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
