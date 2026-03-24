@@ -1,10 +1,156 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northstar Commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/main/resources/static/css/app.css">
 </head>
 <body>
-<h1 th:text="'Hello ' + ${name}"></h1>
+<div class="page-shell">
+    <header class="hero">
+        <nav class="topbar">
+            <div>
+                <p class="eyebrow">Spring Boot storefront</p>
+                <a class="brand" href="/">Northstar Commerce</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="ghost-button" id="refreshProductsButton" type="button">Refresh catalog</button>
+                <button class="ghost-button hidden" id="logoutButton" type="button">Log out</button>
+            </div>
+        </nav>
+
+        <div class="hero-grid">
+            <section class="hero-copy">
+                <p class="eyebrow">Frontend for your existing backend</p>
+                <h1>Turn your APIs into a storefront people can actually use.</h1>
+                <p class="hero-text">
+                    Browse the catalog, create an account, sign in, and manage a live cart from one polished homepage.
+                </p>
+                <div class="hero-metrics">
+                    <article>
+                        <span id="productCount">0</span>
+                        <p>Products loaded</p>
+                    </article>
+                    <article>
+                        <span id="cartCount">0</span>
+                        <p>Items in cart</p>
+                    </article>
+                    <article>
+                        <span id="authStateLabel">Guest</span>
+                        <p>Current session</p>
+                    </article>
+                </div>
+            </section>
+
+            <aside class="auth-panel">
+                <div class="panel-header">
+                    <p class="eyebrow">Account</p>
+                    <h2>Welcome back</h2>
+                </div>
+
+                <div class="status-card" id="userCard">
+                    <p class="status-label">Session status</p>
+                    <strong id="sessionMessage">Browsing as guest</strong>
+                    <span id="userDetails">Create an account or sign in to view your profile details.</span>
+                </div>
+
+                <div class="form-tabs">
+                    <button class="tab-button active" data-tab-target="loginPanel" type="button">Login</button>
+                    <button class="tab-button" data-tab-target="registerPanel" type="button">Register</button>
+                </div>
+
+                <section class="tab-panel active" id="loginPanel">
+                    <form id="loginForm" class="stack-form">
+                        <label>
+                            <span>Email</span>
+                            <input id="loginEmail" name="email" type="email" placeholder="you@example.com" required>
+                        </label>
+                        <label>
+                            <span>Password</span>
+                            <input id="loginPassword" name="password" type="password" placeholder="••••••••" required>
+                        </label>
+                        <button class="primary-button" type="submit">Sign in</button>
+                    </form>
+                </section>
+
+                <section class="tab-panel" id="registerPanel">
+                    <form id="registerForm" class="stack-form">
+                        <label>
+                            <span>Name</span>
+                            <input id="registerName" name="name" type="text" placeholder="Alex Carter" required>
+                        </label>
+                        <label>
+                            <span>Email</span>
+                            <input id="registerEmail" name="email" type="email" placeholder="alex@example.com" required>
+                        </label>
+                        <label>
+                            <span>Password</span>
+                            <input id="registerPassword" name="password" type="password" placeholder="At least 6 characters" required>
+                        </label>
+                        <button class="primary-button" type="submit">Create account</button>
+                    </form>
+                </section>
+
+                <p class="inline-message" id="authFeedback" aria-live="polite"></p>
+            </aside>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="catalog-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Catalog</p>
+                    <h2>Featured inventory</h2>
+                </div>
+                <label class="search-field">
+                    <span class="sr-only">Search products</span>
+                    <input id="searchInput" type="search" placeholder="Search by name or description">
+                </label>
+            </div>
+
+            <div class="catalog-grid" id="productGrid"></div>
+            <div class="empty-state hidden" id="catalogEmptyState">
+                <h3>No products matched that search.</h3>
+                <p>Try a different keyword or refresh the catalog.</p>
+            </div>
+        </section>
+
+        <aside class="cart-panel">
+            <div class="section-heading compact">
+                <div>
+                    <p class="eyebrow">Cart</p>
+                    <h2>Your selections</h2>
+                </div>
+                <button class="ghost-button" id="createCartButton" type="button">New cart</button>
+            </div>
+
+            <div class="cart-summary">
+                <div>
+                    <span>Cart ID</span>
+                    <strong id="cartIdLabel">Not created yet</strong>
+                </div>
+                <div>
+                    <span>Total</span>
+                    <strong id="cartTotal">$0.00</strong>
+                </div>
+            </div>
+
+            <div class="cart-items" id="cartItems"></div>
+            <div class="empty-state" id="cartEmptyState">
+                <h3>Your cart is empty.</h3>
+                <p>Create a cart, then add items from the catalog.</p>
+            </div>
+
+            <p class="inline-message" id="cartFeedback" aria-live="polite"></p>
+        </aside>
+    </main>
+</div>
+
+<script src="/src/main/resources/static/js/app.js"></script>
 </body>
 </html>

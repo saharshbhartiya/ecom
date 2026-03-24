@@ -65,6 +65,7 @@ com\spring\ecom\services\AuthService.class
 com\spring\ecom\entities\Tag.class
 com\spring\ecom\exceptions\CartEmptyException.class
 com\spring\ecom\services\JwtService.class
+com\spring\ecom\config\StripeConfig.class
 com\spring\ecom\repositories\AddressRepository.class
 com\spring\ecom\mapper\ProductMapperImpl.class
 com\spring\ecom\dtos\CartDTO.class
