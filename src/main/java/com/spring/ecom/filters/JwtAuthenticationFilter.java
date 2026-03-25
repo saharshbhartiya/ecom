@@ -1,6 +1,5 @@
 package com.spring.ecom.filters;
 
-import com.spring.ecom.entities.Role;
 import com.spring.ecom.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

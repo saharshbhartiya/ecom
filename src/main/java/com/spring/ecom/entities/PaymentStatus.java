@@ -1,6 +1,6 @@
 package com.spring.ecom.entities;
 
-public enum OrderStatus {
+public enum PaymentStatus {
     PENDING,
     PAID,
     FAILED,

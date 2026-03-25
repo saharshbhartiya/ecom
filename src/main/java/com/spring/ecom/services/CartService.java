@@ -10,8 +10,6 @@ import com.spring.ecom.repositories.CartRepository;
 import com.spring.ecom.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 import java.util.UUID;
 
 @Service

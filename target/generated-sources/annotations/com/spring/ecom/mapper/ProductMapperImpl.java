@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-24T16:30:12+0530",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.45.0.v20260224-0835, environment: Java 21.0.10 (Eclipse Adoptium)"
+    date = "2026-03-25T22:45:47+0530",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
 public class ProductMapperImpl implements ProductMapper {
@@ -23,9 +23,9 @@ public class ProductMapperImpl implements ProductMapper {
         ProductDTO.ProductDTOBuilder productDTO = ProductDTO.builder();
 
         productDTO.categoryId( productCategoryId( product ) );
-        productDTO.description( product.getDescription() );
         productDTO.id( product.getId() );
         productDTO.name( product.getName() );
+        productDTO.description( product.getDescription() );
         productDTO.price( product.getPrice() );
 
         return productDTO.build();
@@ -39,9 +39,9 @@ public class ProductMapperImpl implements ProductMapper {
 
         Product.ProductBuilder product = Product.builder();
 
-        product.description( productDTO.getDescription() );
         product.id( productDTO.getId() );
         product.name( productDTO.getName() );
+        product.description( productDTO.getDescription() );
         product.price( productDTO.getPrice() );
 
         return product.build();
@@ -53,8 +53,8 @@ public class ProductMapperImpl implements ProductMapper {
             return;
         }
 
-        product.setDescription( productDTO.getDescription() );
         product.setName( productDTO.getName() );
+        product.setDescription( productDTO.getDescription() );
         product.setPrice( productDTO.getPrice() );
     }
 

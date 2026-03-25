@@ -2,9 +2,9 @@ spring:
   application:
     name: ecom
   datasource:
-    url: jdbc:mysql://localhost:3306/store
-    username: sahar
-    password: Itachi9$
+    url: ${URL}
+    username: ${NAME}
+    password: ${PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,3 +18,7 @@ spring:
     secret: ${JWT_SECRET}
     accessTokenExpiration : 7200 #2hours
     refreshTokenExpiration : 604800 #7days
+stripe:
+  secretKey: ${STRIPE_SECRET_KEY}
+  webhookSecretKey: ${STRIPE_WEBHOOK_SECRET_KEY}
+websiteUrl: http://localhost:3000

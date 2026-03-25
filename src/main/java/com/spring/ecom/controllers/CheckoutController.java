@@ -1,58 +1,56 @@
 package com.spring.ecom.controllers;
 
 import com.spring.ecom.dtos.CheckoutRequest;
+import com.spring.ecom.dtos.CheckoutResponse;
 import com.spring.ecom.dtos.ErrorDTO;
 import com.spring.ecom.exceptions.CartEmptyException;
 import com.spring.ecom.exceptions.CartNotFoundException;
+import com.spring.ecom.exceptions.PaymentException;
 import com.spring.ecom.services.CheckoutService;
-import com.stripe.exception.StripeException;
+import com.spring.ecom.dtos.WebhookRequest;
+
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import org.springframework.util.StringUtils;
+import lombok.RequiredArgsConstructor;
+
+import java.util.Map;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController {
 
+
+
     private final CheckoutService checkoutService;
 
     @PostMapping
-    public ResponseEntity<?> checkout(
+    public CheckoutResponse checkout(
             @Valid @RequestBody CheckoutRequest request
-    ) throws StripeException {
-        try{
-            return ResponseEntity.ok(checkoutService.checkout(request));
-        }
-        catch (StripeException e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorDTO(resolveStripeMessage(e)));
-        }
+    ) {
+            return checkoutService.checkout(request);
+    }
+
+    @PostMapping("/webhook")
+    public void handleWebHook(
+        @RequestHeader Map<String , String> headers,
+        @RequestBody String payload
+    ) {
+        checkoutService.handleWebhookEvent(new WebhookRequest(headers , payload));
+    }
+
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity<?> handlePaymentException(){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorDTO("Error creatign a checkout session"));
     }
 
     @ExceptionHandler({CartNotFoundException.class , CartEmptyException.class})
     public ResponseEntity<ErrorDTO> handleException(Exception ex){
         return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
-    }
-
-    private String resolveStripeMessage(StripeException exception) {
-        var userMessage = exception.getUserMessage();
-        if (StringUtils.hasText(userMessage)) {
-            return userMessage;
-        }
-
-        var message = exception.getMessage();
-        if (StringUtils.hasText(message) && message.toLowerCase().contains("invalid api key")) {
-            return "Stripe secret key is invalid. Check STRIPE_SECRET_KEY in your .env file.";
-        }
-
-        if ("secret_key_required".equals(exception.getCode())) {
-            return "Stripe secret key is missing. Check STRIPE_SECRET_KEY in your .env file.";
-        }
-
-        return "Error creating checkout session";
     }
 }

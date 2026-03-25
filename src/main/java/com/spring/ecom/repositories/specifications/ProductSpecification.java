@@ -1,9 +1,7 @@
 package com.spring.ecom.repositories.specifications;
 
 import com.spring.ecom.entities.Product;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
