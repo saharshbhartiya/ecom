@@ -1,4 +1,5 @@
 # 🛍️ E-Commerce Platform
+![Banner](https://readmeforge.natrajx.in/api/banner?text=JAVA&subtext=&metal=cyber-red&type=wave&height=50&width=90&animation=none&align=center&section=header&theme=dark&fontFamily=Orbitron) ![Banner](https://readmeforge.natrajx.in/api/banner?text=Spring+Boot&subtext=&metal=neon-green&type=wave&height=50&width=90&animation=none&align=center&section=header&theme=dark&fontFamily=Orbitron)
 <p align="center">
   <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
   <img src="https://img.shields.io/badge/Spring%20Data%20JPA-339933?style=for-the-badge&logo=spring&logoColor=white"/>
