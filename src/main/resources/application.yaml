@@ -16,7 +16,7 @@ spring:
       enabled: true
   jwt:
     secret: ${JWT_SECRET}
-    accessTokenExpiration :  #2hours
+    accessTokenExpiration : 900 #2hours
     refreshTokenExpiration : 604800 #7days
 stripe:
   secretKey: ${STRIPE_SECRET_KEY}

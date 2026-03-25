@@ -3,4 +3,6 @@ HELP.md
 ### IntelliJ IDEA ###
 .idea
 .env
-/src/main/resources
+.vscode
+/src/main/resources/static
+/src/main/resources/templates
